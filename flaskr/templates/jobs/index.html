@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Jobs Information{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for job in jobs %}
+    <article class="job">
+      <header>
+        <div>
+          <h1>{{ job['title'] }}</h1>
+          <div class="about">Đăng bởi: {{ job['company'] }}</div>
+        </div>
+      </header>
+      <p class="body">
+          <div>
+              <p>Lương:{{job['salary']}}</p>
+              <p>Địa chỉ công ty: {{job['address']}}</p>
+              <p>Link mô tả chi tiết công việc: <a>{{job['url']}}</a></p>
+          </div>
+      </p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
