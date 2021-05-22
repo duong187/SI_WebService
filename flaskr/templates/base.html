@@ -1,8 +1,9 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - Flaskr</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 <nav>
-  <h1>Flaskr</h1>
+  <a href="{{ url_for('home') }}"><h1>DATA INTERGRATION</h1></a>
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
@@ -13,12 +14,17 @@
     {% endif %}
   </ul>
 </nav>
+
+<div class="panel">
+  {% block panel %}{% endblock %}
+</div>
+
 <section class="content">
   <header>
     {% block header %}{% endblock %}
   </header>
-  {% for message in get_flashed_messages() %}
+  <!-- {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-  {% endfor %}
+  {% endfor %} -->
   {% block content %}{% endblock %}
 </section>

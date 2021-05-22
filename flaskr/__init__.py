@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from flask_pymongo import PyMongo
+from flask_bootstrap import Bootstrap
 
 def create_app(test_config=None):
     # create and configure the app
@@ -10,6 +11,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev'
     )
     app.config["MONGO_URI"] = "mongodb://localhost:27017/data_intergration"
+    Bootstrap(app)
     mongo = PyMongo(app)
     app.db = mongo.db
 
@@ -27,11 +29,14 @@ def create_app(test_config=None):
         pass
     
     #Register blueprint
+    from . import charts
+    app.register_blueprint(charts.bp)
     from . import auth
     app.register_blueprint(auth.bp)
     from . import fetch
     app.register_blueprint(fetch.bp)
     app.add_url_rule('/', endpoint='index')
+    app.add_url_rule('/home', endpoint='home')
 
     # a simple page that says hello
     @app.route('/hello')

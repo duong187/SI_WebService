@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pie charts
+{% endblock %}
+
+{% block header %}
+    <h2>Pie Charts</h2>
+{% endblock %}
+
+{% block content %}
+<div class="centered">
+    <img class="center" src='data:image/png;base64,{{ pie }}'/>
+</div>
+{% endblock %}
