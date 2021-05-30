@@ -14,15 +14,12 @@
     {% endif %}
   </ul>
 </nav>
-
+<div class="background" >
 <div class="panel" >
-<div class="panel" >
-  <img src=url(../../static/assets/home.jpg) />
-  
   {% block panel %}{% endblock %}
 </div>
 
-<section class="content">
+<div class="content" >
   <header>
     {% block header %}{% endblock %}
   </header>
@@ -30,4 +27,5 @@
     <div class="flash">{{ message }}</div>
   {% endfor %} -->
   {% block content %}{% endblock %}
-</section>
+  </div>
+</div>
