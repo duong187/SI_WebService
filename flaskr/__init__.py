@@ -1,6 +1,6 @@
 from flaskr.fetch import index
 import os
-
+from flask_fontawesome import FontAwesome
 from flask import Flask
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
@@ -96,7 +96,7 @@ def create_app(test_config=None):
     def search():
         if request.method == 'GET':
             text = request.args.get('search_text')
-            jobs = index.search(text, search_type='OR')
+            jobs = index.search(text, search_type='AND')
             return render_template("jobs/home.html", jobs=jobs, page=1)
 
     # @app.route('/')

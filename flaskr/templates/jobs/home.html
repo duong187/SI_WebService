@@ -1,22 +1,36 @@
 {% extends 'base.html' %}
 
 {% block panel %}
-<div style="background-image: url(../../static/assets/home.jpg);">
+<div >
   <h1>{% block title %}Jobs Information{% endblock %}</h1>
 </div>
-<form method="GET" action="/search">
-  <input type='text' name = 'search_text' />
-  <button type='submit'>Search</button>
-</form>
+<!-- <form class="searchBox" method="GET" action="/search">
+  <input class="searchInput" type='text' name = 'search_text' />
+  <button class="searchButton" type='submit'><i class="material-icons">
+    search
+</i></button>
+</form> -->
+
+<div class="wrap">
+    <form class="search" method="GET" action="/search">
+     <input type="text" class="searchTerm" name='search_text' placeholder="Tim Viec">
+     <button type="submit" class="searchButton">
+       <i class="fa fa-search"></i>
+    </button>
+  </form>
+  <div style="padding-top: 0.5em;">
+    <a href="{{ url_for('charts.chart_types') }}" >See charts</a>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block header %}
 {% endblock %}
 
 {% block content %}
-  <div>
-    <a href="{{ url_for('charts.chart_types') }}">See charts</a>
-  </div>
+  
+  <div class="job-list">
   {% for job in jobs %}
     <article class="job">
       <header>
@@ -36,7 +50,9 @@
     {% if not loop.last %}
       <hr>
     {% endif %}
+  
   {% endfor %}
+</div>
   <hr>
   <div>{{ page }}</div>
   <form method="post">

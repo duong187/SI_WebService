@@ -6,7 +6,7 @@ import Stemmer
 # https://en.wikipedia.org/wiki/Most_common_words_in_English
 STOPWORDS = set(['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have',
                  'i', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you',
-                 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'wikipedia'])
+                 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'wikipedia', 'developer', 'engineer'])
 PUNCTUATION = re.compile('[%s]' % re.escape(string.punctuation))
 STEMMER = Stemmer.Stemmer('english')
 
