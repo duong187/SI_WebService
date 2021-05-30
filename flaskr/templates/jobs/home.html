@@ -4,8 +4,8 @@
 <div style="background-image: url(../../static/assets/home.jpg);">
   <h1>{% block title %}Jobs Information{% endblock %}</h1>
 </div>
-<form method="GET" action="#">
-  <input type='text' name = 'name' />
+<form method="GET" action="/search">
+  <input type='text' name = 'search_text' />
   <button type='submit'>Search</button>
 </form>
 {% endblock %}

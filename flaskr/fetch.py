@@ -14,9 +14,11 @@ from bson.json_util import dumps
 
 bp = Blueprint('fetch', __name__)
 
+
 @bp.route("/")
 def index():
     return render_template("jobs/index.html")
+
 
 @bp.route("/home", methods=('GET', 'POST'))
 @login_required

@@ -3,6 +3,7 @@ import math
 from .timing import timing
 from .analysis import analyze
 
+
 class Index:
     def __init__(self):
         self.index = {}
@@ -28,6 +29,8 @@ class Index:
         return math.log10(len(self.documents) / self.document_frequency(token))
 
     def _results(self, analyzed_query):
+        if (analyzed_query == []):
+            return []
         return [self.index.get(token, set()) for token in analyzed_query]
 
     @timing
@@ -46,12 +49,18 @@ class Index:
 
         analyzed_query = analyze(query)
         results = self._results(analyzed_query)
+        if (results == []):
+            print('Null')
+            return []
+
         if search_type == 'AND':
             # all tokens must be in the document
-            documents = [self.documents[doc_id] for doc_id in set.intersection(*results)]
+            documents = [self.documents[doc_id]
+                         for doc_id in set.intersection(*results)]
         if search_type == 'OR':
             # only one token has to be in the document
-            documents = [self.documents[doc_id] for doc_id in set.union(*results)]
+            documents = [self.documents[doc_id]
+                         for doc_id in set.union(*results)]
 
         if rank:
             return self.rank(analyzed_query, documents)

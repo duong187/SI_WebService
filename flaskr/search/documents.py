@@ -1,19 +1,24 @@
 from collections import Counter
 from dataclasses import dataclass
 
+from flask.helpers import stream_with_context
+
 from .analysis import analyze
+
 
 @dataclass
 class Abstract:
-    """Wikipedia abstract"""
+    """job abstract"""
     ID: int
     title: str
-    abstract: str
+    address: str
     url: str
+    company: str
+    salary: str
 
     @property
     def fulltext(self):
-        return ' '.join([self.title, self.abstract])
+        return ' '.join([self.title, self.address, self.company])
 
     def analyze(self):
         self.term_frequencies = Counter(analyze(self.fulltext))
