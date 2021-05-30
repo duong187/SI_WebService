@@ -76,6 +76,8 @@ def create_app(test_config=None):
         pass
 
     # Register blueprint
+    from . import salaryPredict
+    app.register_blueprint(salaryPredict.bp)
     from . import charts
     app.register_blueprint(charts.bp)
     from . import auth
