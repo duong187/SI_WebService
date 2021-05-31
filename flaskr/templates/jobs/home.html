@@ -19,7 +19,8 @@
     </button>
   </form>
   <div style="padding-top: 0.5em;">
-    <a href="{{ url_for('charts.chart_types') }}" >See charts</a>
+    <!-- <a href="{{ url_for('charts.chart_types') }}" >See charts</a> -->
+    <a href="/charts/pie_city" >See charts</a>
   </div>
   <div>
     <a href="{{ url_for('salaryPredict.index') }}">Dự đoán lương</a>
@@ -68,9 +69,12 @@
 </div>
   <hr>
   <div>{{ page }}</div>
-  <form method="post">
+  <form method="get" action="/home">
     <label for="page_num">Số trang</label>
     <input name="page_num" id="page_num" required>
     <input type="submit" value="Go">
+    {% if text_s!=""%}
+    <input style="display: none;" type="text" name="search_text"  value = "{{text_s}}" >
+    {% endif %}
   </form>
 {% endblock %}

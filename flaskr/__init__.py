@@ -112,19 +112,22 @@ def create_app(test_config=None):
         global db
         page_num = 1
         db = get_db()
+        text_s = ""
         jobs = db.jobs_info.find()
-        if request.method == 'POST':
-            page_num = int(request.form['page_num'])
+        if request.args.get('page_num'):
+            page_num = int(request.args.get('page_num'))
         if request.args.get('search_text'):
             text = request.args.get('search_text')
-            jobs = index.search(text, search_type='AND')
+            text_s = request.args.get('search_text')
+            if(text != None):
+                jobs = index.search(text, search_type='AND')
 
         jobs = list(jobs)
         jobs = jobs[(page_num-1)*20:page_num*20]
         jobs_count = db.jobs_info.count()
         page_count = ceil(jobs_count/20)
         page = f"{page_num}/{page_count}"
-        return render_template("jobs/home.html", jobs=jobs, page=page, jobs_count=jobs_count)
+        return render_template("jobs/home.html", jobs=jobs, page=page, jobs_count=jobs_count, text_s=text_s)
         # @app.route('/')
         # def home_page():
         #     jobs_info = mongo.db.jobs_info

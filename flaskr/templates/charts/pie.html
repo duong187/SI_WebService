@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Pie charts
+ Thống kê dữ liệu việc làm hiện nay
 {% endblock %}
 
 {% block header %}
-    <h2>Pie Charts</h2>
+    <h2>Thống kê dữ liệu việc làm hiện nay:</h2>
 {% endblock %}
 
 {% block content %}
-<div class="centered">
-    <img class="center" src='data:image/png;base64,{{ pie }}'/>
+<div class="pie-chart">
+    <img class="chart" class="center" src='data:image/png;base64,{{ pie }}'/>
 </div>
 {% endblock %}

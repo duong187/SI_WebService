@@ -48,21 +48,37 @@ def pie():
 
 @bp.route('/pie_city')
 def pie_city():
-    cities = ['Ha Noi', 'Ho Chi Minh', 'Da Nang']
+    #cities = ['ha hoi', 'thanh pho ho chi minh', 'da nang']
     db = get_db()
-    city_jobs_count = []
+    jobs_count = db.jobs_info.count()
+    cities = db.jobs_info.distinct('city')
+    city_job_data = []
+    c = []
+    num = []
+    salary = []
     for city in cities:
         query = {"city": city}
-        city_jobs_count.append(db.jobs_info.find(query).count())
+        # print(city + '-' + str(db.jobs_info.find(query).count()/jobs_count))
+        # if(db.jobs_info.find(query).count()/jobs_count > 0.05):
+        city_job_data.append({
+            'city': city,
+            'num': db.jobs_info.find(query).count(),
+        })
+    sorted_data = sorted(city_job_data, key=lambda k: k['num'], reverse=True)
+    for i in range(5):
+        c.append(sorted_data[i]['city'])
+        num.append(sorted_data[i]['num'])
     # Draw Chart
-    print(city_jobs_count)
+    # print(city_jobs_count)
     fig = Figure()
     gs = fig.add_gridspec(1, 1)
     ax1 = fig.add_subplot(gs[0, 0])
+    ax1.set_title("5 tỉnh thành có số lương công việc nhiều nhất")
     # ax2 = fig.add_subplot(gs[1, 0])
     # ax3 = fig.add_subplot(gs[0, 1])
     # ax4 = fig.add_subplot(gs[1, 1])
-    ax1.pie(city_jobs_count, labels=cities, autopct='%1.2f%%')
+    pie = ax1.pie(num, autopct='%1.3f%%')
+    ax1.legend(pie[0], c, loc="lower right", bbox_to_anchor=(0.25, 0))
     # ax2.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
     # ax3.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
     # ax4.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')

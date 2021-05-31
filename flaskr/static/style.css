@@ -217,3 +217,13 @@ nav .header-nav {
   flex-direction: row;
   justify-content: space-between;
 }
+.chart {
+  width: 40%;
+  border: 1px solid black;
+  height: auto;
+}
+.pie-chart {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
