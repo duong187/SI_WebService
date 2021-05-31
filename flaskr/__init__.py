@@ -127,7 +127,7 @@ def create_app(test_config=None):
         jobs_count = db.jobs_info.count()
         page_count = ceil(jobs_count/20)
         page = f"{page_num}/{page_count}"
-        return render_template("jobs/home.html", jobs=jobs, page=page, jobs_count=jobs_count, text_s=text_s)
+        return render_template("jobs/home.html", jobs=jobs, page=page, jobs_count=jobs_count, text_s=text_s, page_count=page_count)
         # @app.route('/')
         # def home_page():
         #     jobs_info = mongo.db.jobs_info

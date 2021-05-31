@@ -64,6 +64,10 @@ def pie_city():
             'city': city,
             'num': db.jobs_info.find(query).count(),
         })
+    for job in db.jobs_info.find():
+        if (job["maxSalary"] != 0):
+            salary.append(job["maxSalary"]/1000000)
+            # print(job["maxSalary"])
     sorted_data = sorted(city_job_data, key=lambda k: k['num'], reverse=True)
     for i in range(5):
         c.append(sorted_data[i]['city'])
@@ -88,4 +92,22 @@ def pie_city():
     # Embed the result in the html output.
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     # return f"<img src='data:image/png;base64,{data}'/>"
-    return render_template("charts/pie.html", pie=data)
+    fig2 = Figure()
+    gs2 = fig2.add_gridspec(1, 1)
+    ax2 = fig2.add_subplot(gs[0, 0])
+    ax2.set_xlabel('Mức lương (triệu đồng)')
+    ax2.set_ylabel('Số lượng công việc')
+    ax2.set_title('Phân bố mức lương')
+    # ax2 =fig2.add_subplot(gs[1, 0])
+    # ax3 = fig2.add_subplot(gs[0, 1])
+    # ax4 = fig2.add_subplot(gs[1, 1])
+    hist = ax2.hist(salary, 80)
+    # ax2.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # ax3.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # ax4.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # Save it to a temporary buffer.
+    buf = BytesIO()
+    fig2.savefig(buf, format="png")
+    # Embed the result in the html output.
+    data2 = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return render_template("charts/pie.html", pie=data, hist=data2)
