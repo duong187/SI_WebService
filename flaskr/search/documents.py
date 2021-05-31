@@ -14,7 +14,7 @@ class Abstract:
     address: str
     url: str
     company: str
-    salary: str
+    maxSalary: str
 
     @property
     def fulltext(self):

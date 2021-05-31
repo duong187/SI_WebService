@@ -21,7 +21,6 @@ hr {
   border-top: 1px solid lightgray;
 }
 nav {
-  background: lightgray;
   display: flex;
   align-items: center;
   padding: 0 0.5rem;
@@ -29,6 +28,7 @@ nav {
 nav h1 {
   flex: auto;
   margin: 0;
+  color: #008b8b;
 }
 nav h1 a {
   text-decoration: none;
@@ -122,7 +122,7 @@ img.centered {
   resize: vertical;
 }
 .job {
-  background-color: #e6ffff;
+  background-color: #f0f8ff;
   border-radius: 8px;
   padding-left: 1em;
   padding-top: 0.5em;
@@ -163,13 +163,14 @@ body {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #00b4cc;
+  border: 2px solid #00b4cc;
   border-right: none;
   padding: 5px;
-  height: 20px;
+  height: 30px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9dbfaf;
+  font-size: 1em;
 }
 
 .searchTerm:focus {
@@ -177,15 +178,15 @@ body {
 }
 
 .searchButton {
-  width: 40px;
-  height: 36px;
+  width: 50px;
+  height: 44px;
   border: 1px solid #00b4cc;
   background: #00b4cc;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 30px;
 }
 .wrap {
   width: 50em;
@@ -201,11 +202,18 @@ body {
   padding-bottom: 0.5em;
   padding-top: 0.5em;
   border-radius: 0.5em;
-  background-color: rgb(5, 61, 61);
+  background-color: #101010;
 }
 .background {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100%;
-  background-color: #d0e8e9;
+  background-color: #f0ffff;
+}
+nav .header-nav {
+  background-color: cornflowerblue;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

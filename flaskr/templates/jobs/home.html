@@ -13,7 +13,7 @@
 
 <div class="wrap" >
     <form class="search" method="GET" action="/home">
-     <input type="text" class="searchTerm" name='search_text' placeholder="Tim Viec">
+     <input type="text" class="searchTerm" name='search_text' placeholder="Tìm Kiếm">
      <button type="submit" class="searchButton">
        <i class="fa fa-search"></i>
     </button>
@@ -48,9 +48,14 @@
       </header>
       <p class="body">
           <div>
-              <p>Lương:{{job['salary']}}</p>
+            {% if job['maxSalary']!=0 %}
+              <p>Lương:{{job['maxSalary']}} vnd</p>
+            {% endif %}
+            {% if job['maxSalary']==0 %}
+              <p>Lương: Thương lượng</p>
+            {% endif %}
               <p>Địa chỉ công ty: {{job['address']}}</p>
-              <p>Link mô tả chi tiết công việc: <a>{{job['url']}}</a></p>
+              <!-- <p>Link mô tả chi tiết công việc: <a>{{job['url']}}</a></p> -->
           </div>
       </p>
     </article>

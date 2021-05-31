@@ -32,12 +32,16 @@ def load_documents():
     doc_id = 0
     for job in jobs:
         # print(doc_id)
-        title = job['cleanTitle']
+        if(job['cleanTitle']):
+            title = job['cleanTitle']
+        else:
+            title = " "
+        # url = job['url']
         url = job['url']
         address = job['address']
         company = job['company']
-        salary = job['salary']
-        yield Abstract(ID=doc_id, title=title, url=url, address=address, company=company, salary=salary)
+        maxSalary = job['maxSalary']
+        yield Abstract(ID=doc_id, title=title, url=url, address=address, company=company, maxSalary=maxSalary)
         doc_id += 1
 
     end = time.time()

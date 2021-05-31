@@ -45,29 +45,31 @@ def pie():
     # return f"<img src='data:image/png;base64,{data}'/>"
     return render_template("charts/pie.html", pie=data)
 
+
 @bp.route('/pie_city')
 def pie_city():
-    cities = ['Ha Noi', 'Ho Chi Minh', 'Danang']
+    cities = ['Ha Noi', 'Ho Chi Minh', 'Da Nang']
     db = get_db()
     city_jobs_count = []
     for city in cities:
-        query = {"city":city}
-        city_jobs_count.append(db.itviec.find(query).count())
-    #Draw Chart
+        query = {"city": city}
+        city_jobs_count.append(db.jobs_info.find(query).count())
+    # Draw Chart
+    print(city_jobs_count)
     fig = Figure()
-    gs = fig.add_gridspec(2, 2)
+    gs = fig.add_gridspec(1, 1)
     ax1 = fig.add_subplot(gs[0, 0])
-    ax2 = fig.add_subplot(gs[1, 0])
-    ax3 = fig.add_subplot(gs[0, 1])
-    ax4 = fig.add_subplot(gs[1, 1])
-    ax1.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
-    ax2.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
-    ax3.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
-    ax4.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # ax2 = fig.add_subplot(gs[1, 0])
+    # ax3 = fig.add_subplot(gs[0, 1])
+    # ax4 = fig.add_subplot(gs[1, 1])
+    ax1.pie(city_jobs_count, labels=cities, autopct='%1.2f%%')
+    # ax2.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # ax3.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
+    # ax4.pie(city_jobs_count, labels = cities,autopct='%1.2f%%')
     # Save it to a temporary buffer.
     buf = BytesIO()
     fig.savefig(buf, format="png")
     # Embed the result in the html output.
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
-    #return f"<img src='data:image/png;base64,{data}'/>"
+    # return f"<img src='data:image/png;base64,{data}'/>"
     return render_template("charts/pie.html", pie=data)
