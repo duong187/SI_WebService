@@ -65,8 +65,8 @@ def pie_city():
             'num': db.jobs_info.find(query).count(),
         })
     for job in db.jobs_info.find():
-        if (job["maxSalary"] != 0):
-            salary.append(job["maxSalary"]/1000000)
+        if (int(job["salary"]) != 0):
+            salary.append(int(job["salary"])/1000000)
             # print(job["maxSalary"])
     sorted_data = sorted(city_job_data, key=lambda k: k['num'], reverse=True)
     for i in range(5):
