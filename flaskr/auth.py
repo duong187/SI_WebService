@@ -10,6 +10,7 @@ from bson.objectid import ObjectId
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -26,12 +27,14 @@ def register():
             error = f"User {username} is already registered."
 
         if error is None:
-            req = [InsertOne({"username": username, "password": generate_password_hash(password)})]
+            req = [InsertOne(
+                {"username": username, "password": generate_password_hash(password)})]
             db.accounts.bulk_write(req)
             return redirect(url_for('auth.login'))
 
         flash(error)
     return render_template('auth/register.html')
+
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -40,7 +43,7 @@ def login():
         password = request.form['password']
         db = get_db()
         error = None
-        user = db.accounts.find({"username":username})
+        user = db.accounts.find({"username": username})
         if user is None:
             error = 'Incorrect username.'
         elif not check_password_hash(user[0]['password'], password):
@@ -54,6 +57,7 @@ def login():
         flash(error)
     return render_template('auth/login.html')
 
+
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -63,10 +67,12 @@ def load_logged_in_user():
     else:
         g.user = get_db().accounts.find({"_id": ObjectId(user_id)})
 
+
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))
+
 
 def login_required(view):
     @functools.wraps(view)

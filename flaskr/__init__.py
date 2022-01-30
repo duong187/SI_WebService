@@ -22,8 +22,10 @@ from flaskr.db import get_db
 from math import ceil
 # -------------------------------------
 
-#load jobs information from database
-#jobs info table contains these features: title, url, address, company, maxSalary
+# load jobs information from database
+# jobs info table contains these features: title, url, address, company, maxSalary
+
+
 def load_documents():
     start = time.time()
     db = get_db()
@@ -64,6 +66,7 @@ def create_app(test_config=None):
     )
     #app.config["MONGO_URI"] = "mongodb://localhost:27017/data_intergration"
     app.config["MONGO_URI"] = "mongodb+srv://duongnb:18071999@cluster0.9r4fz.mongodb.net/data_intergration?retryWrites=true&w=majority"
+
     Bootstrap(app)
     mongo = PyMongo(app)
     app.db = mongo.db

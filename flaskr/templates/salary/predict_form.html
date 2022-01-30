@@ -1,28 +1,106 @@
-{% extends 'base.html' %}
-
 {% block header %}
-Dự đoán mức lương tối đa
-{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='util.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='main.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href=" {{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='fonts/iconic/css/material-design-iconic-font.min.css') }}"
+/>
+{% endblock %} {% block content %}
+<body>
+  <div class="limiter">
+    <div
+      class="container-login100"
+      style="background-image: url({{ url_for('static', filename='images/bg-01.jpg') }})"
+    >
+      <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+        <form method="post" class="login100-form validate-form">
+          <span class="login100-form-title p-b-49"> Dự đoán lương </span>
 
-{% block content %}
-<form method="post">
-    <label for="address">Địa chỉ:</label>
-    <input name="address" id="address" required>
-    <label for="benefits">Phúc lợi: </label>
-    <input name="benefits" id="benefits" required>
-    <label for="company">Công ty: </label>
-    <input name="company" id="company" required>
-    <label for="description">Mô tả: </label>
-    <input name="description" id="description" required>
-    <label for="title">Tên công việc: </label>
-    <input name="title" id="title" required>
-    <label for="city">Thành phố</label>
-    <input name="city" id="city" required>
-    <label for="cleanTitle">Từ khóa công việc: </label>
-    <input name="cleanTitle" id="cleanTitle" required>
-    <p>Dự đoán: {{ prediction }}</p>
-    <input type="submit" value="Go">
-  </form>
-{% endblock %}
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Địa chỉ</span>
+            <input class="input100" type="text" name="address" />
+          </div>
 
-"address","benefits","company","description","title","city","cleanTitle"
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Phúc lợi</span>
+            <input class="input100" type="text" name="benefits" />
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Công ty</span>
+            <input class="input100" type="text" name="company" />
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Mô tả</span>
+            <input class="input100" type="text" name="description" />
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Tên công việc</span>
+            <input class="input100" type="text" name="title" />
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Thành phố</span>
+            <input class="input100" type="text" name="city" />
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23">
+            <span class="label-input100">Từ khóa công việc</span>
+            <input class="input100" type="text" name="cleanTitle" />
+          </div>
+
+          <div class="text-right p-t-8 p-b-31"></div>
+          <div>
+            <div class="input100" type="text" name="cleanTitle">
+              Mức lương dự đoán: {{prediction}}
+            </div>
+          </div>
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button type="submit" class="login100-form-btn">Dự đoán</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="dropDownSelect1"></div>
+
+  <!--===============================================================================================-->
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/bootstrap/js/popper.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/daterangepicker/moment.min.js"></script>
+  <script src="vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
+</body>
+
+{% endblock %}
